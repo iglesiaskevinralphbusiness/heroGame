@@ -1,0 +1,45 @@
+
+.screen {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #198754 transparent;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #198754;
+    border-radius: 20px;
+    border: 2px solid transparent;
+  }
+}
+
+
+.board {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #0c2826 transparent;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #0c2826;
+    border-radius: 20px;
+    border: 2px solid transparent;
+  }
+}

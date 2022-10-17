@@ -1,0 +1,712 @@
+@font-face {
+  font-family: 'star';
+  src: url("./assets/star.otf");
+}
+@font-face {
+  font-family: 'star3d';
+  src: url("./assets/star3d.ttf");
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+#root,
+.main {
+  width: 100%;
+  height: 100%;
+}
+.ml15 {
+  margin-left: 15px;;
+}
+.screen {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  .col-left {
+    background-image: url("./assets/bg-screen-left.png");
+    background-size: cover;
+    background-color: #071a19;
+    overflow-y: scroll;
+    width: 390px;
+    min-width: 390px;
+    max-width: 390px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    .player-lbl {
+        font-family: star;
+        font-size: 37px;
+        color:#fff;
+        text-align: center;
+    }
+    .players-list {
+      margin: 0 auto;
+      padding: 0;
+      width: 200px;
+      list-style: none;
+      color: #fff;
+      li {
+        position: relative;
+        background-color: #053935;
+        display: flex;
+        border: 1px solid #fff;
+        padding: 12px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        span {
+          &.name {
+            width: 100%;
+            font-weight: bold;
+          }
+          &.close {
+            
+          }
+        }
+        &:after {
+          content: '';
+          width: 100%;
+          height: 7px;
+          background-color: #0c2826;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        &:hover {
+          background-color: #bd1d34;
+          &:after {
+            background-color: #bd1d34;
+          }
+        }
+      }
+    }
+  }
+  .col-right {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/hero-cover.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    .title {
+      margin-top: 240px;
+      width: 70%;
+      max-width: 970px;
+    }
+    .button-default {
+      margin: auto;
+      margin-top: 40px;
+    }
+    .add {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 452px;
+      height: 65px;
+      background-image: url("./assets/add-bg.png");
+      text-align: left;
+      input {
+        width: 340px;
+        font-size: 39px;
+        background: transparent;
+        outline: none;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        padding: 0 15px;
+        box-sizing: border-box;
+      }
+      .button-add {
+        position: absolute;
+        width: 100px;
+        height: 64px;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.board {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  .col-left {
+    background-size: cover;
+    background-color: #5194ae;
+    overflow-y: scroll;
+    width: 390px;
+    min-width: 390px;
+    max-width: 390px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    .player-lbl {
+        font-family: star;
+        font-size: 37px;
+        color:#fff;
+        text-align: center;
+    }
+    .players-list {
+      margin: 0 auto;
+      padding: 0;
+      width: 200px;
+      list-style: none;
+      color: #fff;
+      li {
+        position: relative;
+        background-color: #324f71;
+        display: flex;
+        border: 1px solid #fff;
+        padding: 12px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        span {
+          &.name {
+            width: 100%;
+            font-weight: bold;
+          }
+          &.score {
+            background: #ffc107;
+            border-radius: 32px;
+            width: 39px;
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+        &:after {
+          content: '';
+          width: 100%;
+          height: 7px;
+          background-color: #0c2826;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        &.active {
+          background-color: #053935;
+        }
+      }
+    }
+    .button-shuffle {
+      width: 48px;
+      height: 45px;
+      background-image: url("./assets/button-shuffle.png");
+      cursor: pointer;
+      margin: 0 auto 20px;
+    }
+  }
+  .col-right {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url("./assets/city-cover.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center center;
+    text-align: center;
+
+    .cards {
+      width: 100%;
+      height: calc(100% - 90px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      ul {
+        height: 100%;;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        margin: 0;
+        padding: 3px;
+        list-style: none;
+        li {
+          max-width: 145px;
+          min-width: 145px;
+          width: 145px;
+          height: 202px;
+          margin: 6px;
+          padding: 1% 1.2% 1.1% 1.1%;
+          background-image: url("./assets/card-bg.png");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          cursor: pointer;
+          .card-block {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border: 1px solid #000;
+            &:hover {
+              outline: 5px solid #00ef10;
+            }
+            img {
+              width: 100%;
+              filter: brightness(0%);
+            }
+            .numbering {
+              position: absolute;
+              top: -41px;
+              left: -2px;
+              font-family: star;
+              font-size: 52px;
+              color: #ffc107;
+              text-shadow: 2px 2px #ff0000;
+              z-index: 2;
+            }
+          }
+          &.opened {
+            opacity: 0;
+            .card-block {
+              img {
+                width: 100%;
+                filter: brightness(100%);
+              }
+              &:hover {
+                outline: unset;
+                cursor: default;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .indication {
+      display: flex;
+      align-items: center;
+      height: 80px;
+      padding: 0 20px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      background-color: #324f71;
+      box-shadow: black 0 0px 7px;
+      .logo {
+        width: 237px;
+        margin-right: 25px;
+      }
+      .current-turn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .name {
+          min-width: 200px;
+          position: relative;
+          background-color: #053935;
+          display: flex;
+          border: 1px solid #fff;
+          padding: 12px;
+          border-radius: 5px;
+          overflow: hidden;
+          font-weight: bold;
+          color: #fff;
+          &:after {
+            content: "";
+            width: 100%;
+            height: 7px;
+            background-color: #0c2826;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+        }
+        .turn {
+          padding-right: 10px;
+          font-size: 20px;
+          color: #5194af;
+          font-weight: bold;
+        }
+      }
+      .remaining-cards {
+        width: 200px;
+        font-size: 20px;
+        color: #5194af;
+        font-weight: bold;
+        margin-right: 20px;
+        span {
+          padding-left: 10px;
+        }
+      }
+      .opacity-level {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: #5194af;
+        font-weight: bold;
+        .val {
+          padding: 0 20px;
+        }
+        .inc {
+          display: block;
+          width: 40px;
+          height: 38px;
+          background-image: url('./assets/button-inc.png');
+        }
+        .dec {
+          display: block;
+          width: 40px;
+          height: 38px;
+          background-image: url('./assets/button-dec.png');
+        }
+      }
+    }
+  }
+}
+
+
+.card-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #000000d9;
+  z-index: 3;
+  .confetti {
+    position: absolute;
+    z-index: 4;
+    width: 100%;
+  }
+  .logo {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 500px;
+    margin: auto;
+    margin-top: -699px;
+  }
+  h2 {
+    position: absolute;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 100px;
+    font-family: 'star';
+    &.wrong {
+      text-shadow: 2px 2px 8px #ff0000;
+    }
+    &.correct {
+      color: rgb(27 255 0 / 30%);
+      background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+      -webkit-background-size: 150px;
+
+      -webkit-background-clip: text;
+      -webkit-animation-name: shine;
+      -webkit-animation-duration: 2s;
+      -webkit-animation-iteration-count: infinite;
+      text-shadow: 0 0px 0px rgb(110 255 0 / 18%);
+    }
+  }
+  .card-container {
+    max-width: 440px;
+    min-width: 440px;
+    width: 440px;
+    height: 622px;
+    padding: 34px 38px 39px 32px;
+    background-image: url("./assets/card-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 15px #10ff00;
+    animation-name: cardShadow;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    border-radius: 10px;
+    .card-block {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border: 4px solid #000;
+      img {
+        width: 100%;
+        filter: brightness(0%);
+      }
+      .hero-name {
+        position: absolute;
+        width: 335px;
+        height: 85px;
+        bottom: 4px;
+        left: -22px;
+        font-size: 43px;
+        letter-spacing: 4px;
+        line-height: 0.9;
+        font-family: 'star';
+        color: #fff;
+        text-align: center;
+        padding: 31px 48px 17px 23px;
+        text-shadow: 2px 2px #212529;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        background-image: url("./assets/hero-name-bg.png");
+      }
+    }
+  }
+  &.correct {
+    .card-container{
+      .card-block {
+        img {
+          filter: brightness(100%);
+        }
+      }
+    }
+  }
+}
+
+.reward-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #000000d9;
+  z-index: 3;
+  flex-direction: column;
+  .reward-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .box {
+      position: relative;
+      width: 310px;
+      height: 297px;
+      background-image: url("./assets/treasure-closed.png");
+      cursor: pointer;
+      .coin {
+        display: none;
+        position: absolute;
+        left: 50px;
+        width: 159px;
+        height: 161px;
+        padding-top: 38px;
+        color: #fff;
+        font-family: 'star';
+        font-size: 72px;
+        background-image: url("./assets/coin.png");
+        line-height: 1.1;
+        text-shadow: 2px 2px 4px #000000;
+        animation-name: goTop;
+        animation-duration: 1s;
+        span {
+          display: block;
+          line-height: 0;
+          font-size: 20px;
+        }
+      }
+      &.opened {
+        .coin {
+          display: block;
+        }
+        background-image: url("./assets/treasure-opened.png");
+      }
+      &.opened-mine {
+        .coin {
+          display: block;
+        }
+        background-image: url("./assets/treasure-opened-mine.png");
+      }
+    }
+  }
+
+}
+
+
+.winner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  &-container {
+    position: relative;
+    width: 1382px;
+    height: 882px;
+    background-image: url("./assets/congrats-bg.jpg");
+    img {
+      &.confetti {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+    }
+    > div {
+      position: absolute;
+      width: 421px;
+      text-align: center;
+      color: #fff;
+      font-size: 60px;
+      font-family: 'star';
+      text-shadow: 0 0 3px #FF0000;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      &.first {
+        top: 361px;
+        left: 484px;
+      }
+      &.second {
+        top: 513px;
+        left: 0;
+      }
+      &.third {
+        top: 513px;
+        right: 0;
+      }
+      > span {
+        display: block;
+        font-size: 30px;
+      }
+    }
+    ul {
+      position: absolute;
+      bottom: 20px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      list-style: none;
+      flex-wrap: wrap;
+      max-width: 75%;
+      margin: auto;
+      left: 0;
+      right: 0;
+      li {
+        background-color: #fff;
+        margin: 2px;
+        padding: 0 5px;
+        border-radius: 20px;
+        font-weight: bold;
+        color: #0178f8;
+      }
+    }
+  }
+}
+
+.mechanics {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  background-color: #000;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  img {
+    margin: 200px;
+  }
+}
+
+
+/* common */
+.button-default {
+  background-image: url("./assets/button-bg.png");
+  width: 264px;
+  height: 70px;
+  cursor: pointer;
+  font-family: 'star';
+  color: #fff;
+  font-size: 47px;
+  text-align: center;
+  &:hover {
+    background-image: url("./assets/button-bg-hover.png");
+  }
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px 0;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #3a3a3a;
+  }
+}
+.game-mechanincs {
+  margin-top: 20px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+img.opa-1 { filter: brightness(10%) !important; }
+img.opa-2 { filter: brightness(15%) !important; }
+img.opa-3 { filter: brightness(25%) !important; }
+img.opa-4 { filter: brightness(30%) !important; }
+img.opa-5 { filter: brightness(35%) !important; }
+img.opa-6 { filter: brightness(40%) !important; }
+img.opa-7 { filter: brightness(45%) !important; }
+img.opa-8 { filter: brightness(50%) !important; }
+
+@keyframes cardShadow {
+  from {
+    box-shadow: 0 0 15px #10ff00;
+  }
+  to {
+    box-shadow: 0 0 40px #10ff00;
+  }
+}
+
+@keyframes shine {
+	0%, 10% {
+		background-position: -1000px;
+	}
+	20% {
+		background-position: top left;
+	}
+	90% {
+		background-position: top right;
+	}
+	100% {
+		background-position: 1000px;
+	}
+}
+
+@keyframes goTop {
+  from { 
+    top: 100px;
+    opacity: 0;
+    transform: scale(0);
+  }
+  to { 
+    top: 0;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
